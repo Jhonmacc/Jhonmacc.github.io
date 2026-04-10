@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhon Amorim — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-card-hover: #1a1a26;
+  --accent: #64ffda;
+  --accent2: #7c4dff;
+  --text: #e0e0e8;
+  --text-muted: #8888a0;
+  --text-heading: #ffffff;
+  --border: #1e1e2e;
+  --gradient: linear-gradient(135deg, #64ffda 0%, #7c4dff 100%);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* GRAIN OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+nav a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6rem 3rem;
+}
+
+.hero-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  animation: float 12s ease-in-out infinite;
+}
+
+.hero-bg-orb:nth-child(1) {
+  width: 500px; height: 500px;
+  background: var(--accent);
+  top: 10%; left: 10%;
+}
+
+.hero-bg-orb:nth-child(2) {
+  width: 400px; height: 400px;
+  background: var(--accent2);
+  bottom: 10%; right: 10%;
+  animation-delay: -6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  text-align: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  border: 1px solid rgba(100,255,218,0.3);
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  color: var(--text-heading);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero h1 span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--gradient);
+  color: var(--bg);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(100,255,218,0.25); }
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+}
+
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+section {
+  padding: 6rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--text-heading);
+  margin-bottom: 3rem;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text { color: var(--text-muted); font-size: 1.05rem; }
+.about-text p + p { margin-top: 1rem; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* SKILLS */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-group::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+
+.skill-group:hover::before { transform: scaleX(1); }
+.skill-group:hover { border-color: rgba(100,255,218,0.2); background: var(--bg-card-hover); }
+
+.skill-group-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.skill-group h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 1rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(100,255,218,0.06);
+  color: var(--accent);
+  border: 1px solid rgba(100,255,218,0.1);
+}
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: all 0.4s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+}
+
+.project-card:hover {
+  border-color: rgba(124,77,255,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.project-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(4px, -4px); }
+
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.project-tech {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-tech span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent2);
+  background: rgba(124,77,255,0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* CONTACT */
+.contact-section {
+  text-align: center;
+  padding: 8rem 3rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav ul { gap: 1rem; }
+  nav a { font-size: 0.75rem; letter-spacing: 1px; }
+  section { padding: 4rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .hero { padding: 6rem 1.5rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .contact-section { padding: 5rem 1.5rem; }
+}
+
+/* SCROLL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">JA</div>
+  <ul>
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projetos</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-orb"></div>
+  <div class="hero-bg-orb"></div>
+  <div class="hero-content">
+    <div class="hero-tag">FULL STACK DEVELOPER</div>
+    <h1>Jhon <span>Amorim</span></h1>
+    <p>+5 anos construindo aplicações web escaláveis com foco em arquitetura de software, performance e automação.</p>
+    <div class="hero-buttons">
+      <a href="https://github.com/Jhonmacc" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="https://www.linkedin.com/in/jhon-amorim-3a41601a0" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">// sobre mim</div>
+  <h2 class="section-title">Quem sou eu</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Desenvolvedor Full Stack com mais de 5 anos de experiência em desenvolvimento de software e mais de 8 anos em TI. Especializado em construir sistemas web escaláveis, mantendo foco em arquitetura limpa e boas práticas.</p>
+      <p>Trabalho com todo o stack — do backend com Laravel e Node.js, passando por frontends modernos com Vue.js e React, até infraestrutura cloud na AWS com Docker e CI/CD.</p>
+      <p>Também atuo como instrutor de desenvolvimento de software, formando e mentorando novos desenvolvedores.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Anos de Dev</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Anos em TI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15</div>
+        <div class="stat-label">Repositórios</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Café por dia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">// habilidades</div>
+  <h2 class="section-title">Stack & Ferramentas</h2>
+  <div class="skills-container">
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">⚙️</div>
+      <h3>Backend & Arquitetura</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Design Patterns</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🎨</div>
+      <h3>Frontend</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Vue.js</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Tailwind CSS</span>
+        <span class="skill-tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🗄️</div>
+      <h3>Banco de Dados</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Redis</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">☁️</div>
+      <h3>DevOps & Cloud</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">Nginx</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Ansible</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">🧩</div>
+      <h3>Infra & Redes</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">VMware ESXi</span>
+        <span class="skill-tag">Windows Server</span>
+        <span class="skill-tag">Networking</span>
+        <span class="skill-tag">Virtualização</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-icon">👨‍🏫</div>
+      <h3>Ensino & Liderança</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Instrutor</span>
+        <span class="skill-tag">Mentoria</span>
+        <span class="skill-tag">Comunicação</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">// projetos</div>
+  <h2 class="section-title">Trabalhos em Destaque</h2>
+  <div class="projects-grid">
+    <a href="https://github.com/Jhonmacc/gestfine-app" target="_blank" class="project-card reveal">
+      <div class="project-card-header">
+        <h3>Gest-Fine</h3>
+        <span class="project-arrow">↗</span>
+      </div>
+      <p>Sistema de Gestão de Certificados Digitais — controle completo do ciclo de vida dos certificados.</p>
+      <div class="project-tech"><span>PHP</span><span>Laravel</span></div>
+    </a>
+    <a href="https://github.com/Jhonmacc/forum-web" target="_blank" class="project-card reveal">
+      <div class="project-card-header">
+        <h3>Forum Web</h3>
+        <span class="project-arrow">↗</span>
+      </div>
+      <p>Fórum completo com CRUD de posts, tags, autenticação e sistema de permissões.</p>
+      <div class="project-tech"><span>Vue.js</span><span>Laravel</span></div>
+    </a>
+    <a href="https://github.com/Jhonmacc/laravel-swagger" target="_blank" class="project-card reveal">
+      <div class="project-card-header">
+        <h3>Laravel + Swagger</h3>
+        <span class="project-arrow">↗</span>
+      </div>
+      <p>Documentação de API automatizada usando Laravel integrado com Swagger/OpenAPI.</p>
+      <div class="project-tech"><span>PHP</span><span>Swagger</span></div>
+    </a>
+    <a href="https://github.com/Jhonmacc/DockerNiza" target="_blank" class="project-card reveal">
+      <div class="project-card-header">
+        <h3>DockerNiza</h3>
+        <span class="project-arrow">↗</span>
+      </div>
+      <p>Imagem Docker customizada para escalonamento de aplicações em produção.</p>
+      <div class="project-tech"><span>Docker</span><span>DevOps</span></div>
+    </a>
+    <a href="https://github.com/Jhonmacc/app-reservas-senai" target="_blank" class="project-card reveal">
+      <div class="project-card-header">
+        <h3>App Reservas — SENAI</h3>
+        <span class="project-arrow">↗</span>
+      </div>
+      <p>Sistema de reservas desenvolvido como conteúdo didático para alunos do SENAI.</p>
+      <div class="project-tech"><span>PHP</span><span>Laravel</span></div>
+    </a>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="section-label">// contato</div>
+  <h2 class="section-title">Vamos conversar?</h2>
+  <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Estou aberto a oportunidades remotas internacionais e novos projetos. Entre em contato!</p>
+  <div class="contact-links">
+    <a href="mailto:jhon.macc92@gmail.com" class="contact-link">✉️ Email</a>
+    <a href="https://www.linkedin.com/in/jhon-amorim-3a41601a0" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://github.com/Jhonmacc" target="_blank" class="contact-link">🐙 GitHub</a>
+    <a href="https://api.whatsapp.com/send?phone=5562983077232" target="_blank" class="contact-link">📱 WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Jhon Amorim — Feito com dedicação</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 100);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
